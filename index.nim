@@ -47,9 +47,11 @@ proc main() =
   let nim = """
 import jester, asyncdispatch, json
 import httpcore
-include "mytempl.nim"
+include "templates/mytempl.nim"
 
 routes:
+  get "/":
+    resp "Hello World!"
   post "/receive_json":
     try:
       let j = parseJson(request.body)
