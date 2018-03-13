@@ -43,11 +43,17 @@ proc selectAll(): seq[JsonNode] =
     # select
     return users
 
-proc insert(name: string): untyped =
+proc insert(name: string): JsonNode =
     let db = open("mydb.db","user","password","dbname")
     var id = db.tryInsertId(sql"insert into work (name) values (?)", name)
     var data = %*{"id": id, "name": name}
     return data
+
+proc update(id: string, name: string): JsonNode =
+  let db = open("mydb.db","user","password","dbname")
+  db.exec(sql"update work set name = ? where id = ?", name, id)
+  var data = %*{"id": id, "name": name}
+  return data
 
 proc delete() =
   block:

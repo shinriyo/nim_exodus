@@ -17,10 +17,9 @@ routes:
     resp $data, "application/json"
   patch "/users/@id":
     # Update
-    # var params = request.formData
-    # var name = params["name"].body
-    # db.exec(sql"update users set name = ? where id = ?", name, @"id")
-    var data = %*{"id": @"id", "name": "test"}
+    var params = request.formData
+    var name: string = params["name"].body
+    var data: JsonNode = update(@"id", name)
     resp $data, "application/json"
 
 runForever()
