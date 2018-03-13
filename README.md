@@ -27,6 +27,10 @@ nim c -r json_app.nim
 
 - select
 
+    curl localhost:5000/users/1
+
+- select all
+
     curl localhost:5000/users
 
 - insert
@@ -39,5 +43,5 @@ nim c -r json_app.nim
 
 - delete
 
-    curl -X DELETE -F name=hoge localhost:5000/users/1
+    curl -X DELETE -F localhost:5000/users/1
 
