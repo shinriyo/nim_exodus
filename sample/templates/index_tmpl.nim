@@ -13,7 +13,8 @@ function deleteUser(id) {
   	var users = JSON.parse(xhr.responseText);
   	if (xhr.readyState == 4 && xhr.status == "200") {
   		// console.table(users);
-  		alert("削除成功");
+      alert("削除成功");
+      location.reload();
   	} else {
       // console.error(users);
   		alert("削除失敗");

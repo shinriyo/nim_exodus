@@ -6,6 +6,7 @@ include "templates/edit_tmpl.nim"
 include "templates/show_tmpl.nim"
 include "sqlite_controller.nim"
 
+var title: string = "Scaffolding"
 routes:
   get "/":
     resp "Hello World!"
@@ -19,20 +20,21 @@ routes:
   # Using an HTML template from http://nim-lang.org/docs/filters.html
   get "/users":
     var data: seq[JsonNode] = selectAll()
-    resp generateIndexHTMLPage("Title", data)
+    resp generateIndexHTMLPage(title, data)
   get "/users/new":
-    resp generateNewHTMLPage("Title")
+    resp generateNewHTMLPage(title)
   get "/users/@id/edit":
     var data: JsonNode = select(@"id")
-    resp generateEditHTMLPage("Title", data)
+    resp generateEditHTMLPage(title, data)
   get "/users/@id":
     var data: JsonNode = select(@"id")
-    resp generateShowHTMLPage("Title", data)
+    resp generateShowHTMLPage(title, data)
 
   post "/users":
     # var params: MultiData = request.formData
     # var name = params["name"].body
     # data: JsonNode = insert(name)
+    # resp $data, "application/json"
     try:
       let j = parseJson(request.body)
       var data: JsonNode = insert(j["name"].str)
@@ -41,10 +43,16 @@ routes:
       resp Http400, "Unable to parse JSON payload"
   patch "/users/@id":
     # Update
-    var params = request.formData
-    var name: string = params["name"].body
-    var data: JsonNode = update(@"id", name)
-    resp $data, "application/json"
+    # var params = request.formData
+    # var name: string = params["name"].body
+    # var data: JsonNode = update(@"id", name)
+    # resp $data, "application/json"
+    try:
+      let j = parseJson(request.body)
+      var data: JsonNode = update(@"id", j["name"].str)
+      resp $data, "application/json"
+    except:
+      resp Http400, "Unable to parse JSON payload"
   delete "/users/@id":
     var data: JsonNode = delete(@"id")
     resp $data, "application/json"
