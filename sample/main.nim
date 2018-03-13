@@ -9,15 +9,17 @@ include "sqlite_controller.nim"
 var title: string = "Scaffolding"
 routes:
   get "/":
-    resp "Hello World!"
-  # GET	/photos	photos#index	すべての写真の一覧を表示
-  # GET	/photos/new	photos#new	写真を1つ作成するためのHTMLフォームを返す
-  # POST	/photos	photos#create	写真を1つ作成する
-  # GET	/photos/:id	photos#show	特定の写真を表示する
-  # GET	/photos/:id/edit	photos#edit	写真編集用のHTMLフォームを1つ返す
-  # PATCH/PUT	/photos/:id	photos#update	特定の写真を更新する
-  # DELETE	/photos/:id	photos#destroy	特定の写真を削除する
-  # Using an HTML template from http://nim-lang.org/docs/filters.html
+    let hear = """
+GET	/users	users#index	すべてのユーザの一覧を表示<br/>
+GET	/users/new	users#new	ユーザを1つ作成するためのHTMLフォームを返す<br/>
+POST	/users	users#create	ユーザを1つ作成する<br/>
+GET	/users/:id	users#show	特定のユーザを表示する<br/>
+GET	/users/:id/edit	users#edit	ユーザ編集用のHTMLフォームを1つ返す<br/>
+PATCH/PUT	/users/:id	users#update	特定のユーザを更新する<br/>
+DELETE	/users/:id	users#destroy	特定のユーザを削除する<br/>
+    """
+    resp hear
+
   get "/users":
     var data: seq[JsonNode] = selectAll()
     resp generateIndexHTMLPage(title, data)
