@@ -28,14 +28,14 @@ function updateUser(id) {
 <body>
   <form name="myform" onSubmit="JavaScript:updateUser(${tab["id"].str})">
   <p>
-  名前：<input type="text" name="name" value=${tab["name"].str}>
+  Name: <input type="text" name="name" value=${tab["name"].str}>
   </p>
   <p>
-  <input type="submit" value="送信する">
-  <input type="reset" value="入力内容をリセットする">
+  <input type="submit" value="Submit">
+  <input type="reset" value="Reset">
   </p>
   </form>
 
-  <a href="../../users">戻る</a>
+  <a href="../../users">Return</a>
 </body>
   

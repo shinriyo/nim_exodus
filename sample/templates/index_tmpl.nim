@@ -13,11 +13,11 @@ function deleteUser(id) {
   	var users = JSON.parse(xhr.responseText);
   	if (xhr.readyState == 4 && xhr.status == "200") {
   		// console.table(users);
-      alert("削除成功");
+      alert("Delete success.");
       location.reload();
   	} else {
       // console.error(users);
-  		alert("削除失敗");
+  		alert("Delete failed");
   	}
   }
   xhr.send(null);
@@ -29,11 +29,11 @@ function deleteUser(id) {
   #for item in items(tabs):
     <li>
       <a href=users/${item["id"].str}>${item["name"].str}</a>
-      <a href=users/${item["id"].str}/edit>編集</a>
-      <a href="javascript:deleteUser(${item["id"].str});">削除</a>
+      <a href=users/${item["id"].str}/edit>Edit</a>
+      <a href="javascript:deleteUser(${item["id"].str});">Delete</a>
     </li>
   #end for
     </ul>
   </div>
-  <a href="users/new">新規追加</a>
+  <a href="users/new">New</a>
 </body>

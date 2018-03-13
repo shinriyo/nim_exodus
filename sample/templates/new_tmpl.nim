@@ -27,13 +27,13 @@ function createUser() {
 <body>
   <form name="myform" onSubmit="JavaScript:createUser()">
   <p>
-  名前：<input type="text" name="name">
+  Name: <input type="text" name="name">
   </p>
   <p>
-  <input type="submit" value="送信する">
-  <input type="reset" value="入力内容をリセットする">
+  <input type="submit" value="Submit">
+  <input type="reset" value="Reset">
   </p>
   </form>
-  <a href="../../users">戻る</a>
+  <a href="../../users">Return</a>
 </body>
   

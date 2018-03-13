@@ -8,8 +8,9 @@ nim c -r index.nim
 
 -type html (default)
 
-json
-react
+JSON
+React
+Karax
 
 -db sqlie (default)
 
