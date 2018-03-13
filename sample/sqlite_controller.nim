@@ -23,20 +23,31 @@ proc insert() =
     echo "更新された行=",db.execAffectedRows(sql"update work set name=? where id=?","Mr.ホームズ",3)
     db.exec(sql"COMMIT")
 
-proc select(id: string): untyped =
+proc select(id: string): JsonNode =
   block:
     let db = open("mydb.db","user","password","dbname")
 
-    # セレクトする
-    var row = db.getRow(sql"select * from work where id = ?", id)
-    return row
+    # select
+    var row: Row = db.getRow(sql"select * from work where id = ?", id)
+    var data = %*{"id": row[0], "name": row[1]}
+    return data
 
-proc selectAll(): seq[Row] =
+proc selectAll(): seq[JsonNode] =
   block:
     let db = open("mydb.db","user","password","dbname")
+    var rows: seq[Row] = db.getAllRows(sql"select * from work")
+    var users: seq[JsonNode]
+    users = @[]
+    for row in rows:
+      users.add(%*{"id": row[0], "name": row[1]})
+    # select
+    return users
 
-    # セレクトする
-    return db.getAllRows(sql"select id,name from work order by id")
+proc insert(name: string): untyped =
+    let db = open("mydb.db","user","password","dbname")
+    var id = db.tryInsertId(sql"insert into work (name) values (?)", name)
+    var data = %*{"id": id, "name": name}
+    return data
 
 proc delete() =
   block:
