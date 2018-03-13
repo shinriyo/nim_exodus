@@ -7,7 +7,7 @@
   <div id="menu">
     <ul>
   #for item in items(tabs):
-    <li><a href=${item["id"]}>$item["name"]</a></li>
+    <li><a href=users/${item["id"]}>${item["name"].str}</a></li>
   #end for
     </ul>
   </div>
