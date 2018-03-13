@@ -2,6 +2,7 @@ import jester, asyncdispatch, json
 import httpcore
 include "templates/index_tmpl.nim"
 include "templates/new_tmpl.nim"
+include "templates/edit_tmpl.nim"
 include "templates/show_tmpl.nim"
 include "sqlite_controller.nim"
 
@@ -21,10 +22,11 @@ routes:
     resp generateIndexHTMLPage("Title", data)
   get "/users/new":
     resp generateNewHTMLPage("Title")
-  # get "/users/@id/edit":
+  get "/users/@id/edit":
+    var data: JsonNode = select(@"id")
+    resp generateEditHTMLPage("Title", data)
   get "/users/@id":
     var data: JsonNode = select(@"id")
-    # resp $data, "application/json"
     resp generateShowHTMLPage("Title", data)
 
   post "/users":

@@ -6,7 +6,8 @@
 <body>
   <div id="menu">
     <ul>
-    <li><a href="${tab}.html">$tab</a></li>
+    <li>Id: ${tab["id"]}</li>
+    <li>Name: ${tab["name"]}</li>
     </ul>
   </div>
 </body>
