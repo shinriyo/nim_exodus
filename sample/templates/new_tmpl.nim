@@ -1,6 +1,5 @@
 #? stdtmpl | standard
-#proc generateNewHTMLPage(title, currentTab, content: string
-#                      ): string =
+#proc generateNewHTMLPage(title: string): string =
 #  result = ""
 <head><title>$title</title></head>
 <body>

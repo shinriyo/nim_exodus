@@ -2,6 +2,7 @@ import jester, asyncdispatch, json
 import httpcore
 include "templates/index_tmpl.nim"
 include "templates/new_tmpl.nim"
+include "templates/show_tmpl.nim"
 include "sqlite_controller.nim"
 
 routes:
@@ -17,15 +18,14 @@ routes:
   # Using an HTML template from http://nim-lang.org/docs/filters.html
   get "/users":
     var data: seq[JsonNode] = selectAll()
-    # resp $data, "application/json"
-    # resp generateIndexHTMLPage("foo", "bar", "baz", ["fuga", "bar"])
     resp generateIndexHTMLPage("Title", data)
   get "/users/new":
-    resp generateNewHTMLPage("foo", "bar", "baz")
+    resp generateNewHTMLPage("Title")
+  # get "/users/@id/edit":
   get "/users/@id":
-    # var data: JsonNode = select(@"id")
+    var data: JsonNode = select(@"id")
     # resp $data, "application/json"
-    resp generateNewHTMLPage("foo", "bar", "baz")
+    resp generateShowHTMLPage("Title", data)
 
   post "/users":
     var params: MultiData = request.formData
