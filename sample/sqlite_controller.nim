@@ -28,7 +28,12 @@ proc update(id: string, name: string): JsonNode =
   var data = %*{"id": id, "name": name}
   return data
 
-proc delete() =
+proc delete(id: string): JsonNode =
+  var data = %*{"id": id}
+  discard db.tryExec(sql"delete from work where id = ?", id)
+  return data
+
+proc create() =
   block:
     let db = open("mydb.db","user","password","dbname")
     let ddl = @[

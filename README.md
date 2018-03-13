@@ -39,5 +39,5 @@ nim c -r json_app.nim
 
 - delete
 
-    curl -X PATCH -F name=hoge localhost:5000/users/1
+    curl -X DELETE -F name=hoge localhost:5000/users/1
 

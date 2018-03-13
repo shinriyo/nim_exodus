@@ -21,6 +21,10 @@ routes:
     var name: string = params["name"].body
     var data: JsonNode = update(@"id", name)
     resp $data, "application/json"
+  delete "/users/@id":
+    var params = request.formData
+    var data: JsonNode = delete(@"id")
+    resp $data, "application/json"
 
 runForever()
   
