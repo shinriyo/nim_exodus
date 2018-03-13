@@ -43,8 +43,3 @@ proc create() =
     # DDLを実行
     for cmd in ddl :
       discard db.tryExec(cmd)
-
-    # セレクトする
-    for x in db.fastRows(sql"select id,name from work order by id") :
-      echo x
-    # var data = %*[{"id": "id"}, {"id": "id"}]
