@@ -6,14 +6,14 @@ nim c -r index.nim
 
 ## Options
 
--json
+-type html (default)
 
--db sqlie
+json
+react
 
-## Run
+-db sqlie (default)
 
-nim c -r index.nim
-
+postgresql or postgres
 
 ## Sample
 
