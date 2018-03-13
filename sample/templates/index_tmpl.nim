@@ -12,9 +12,11 @@ function deleteUser(id) {
   xhr.onload = function () {
   	var users = JSON.parse(xhr.responseText);
   	if (xhr.readyState == 4 && xhr.status == "200") {
-  		console.table(users);
+  		// console.table(users);
+  		alert("削除成功");
   	} else {
-      console.error(users);
+      // console.error(users);
+  		alert("削除失敗");
   	}
   }
   xhr.send(null);
@@ -32,4 +34,5 @@ function deleteUser(id) {
   #end for
     </ul>
   </div>
+  <a href="users/new">新規追加</a>
 </body>

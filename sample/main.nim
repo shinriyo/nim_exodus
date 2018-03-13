@@ -30,10 +30,15 @@ routes:
     resp generateShowHTMLPage("Title", data)
 
   post "/users":
-    var params: MultiData = request.formData
-    var name = params["name"].body
-    var data: JsonNode = insert(name)
-    resp $data, "application/json"
+    # var params: MultiData = request.formData
+    # var name = params["name"].body
+    # data: JsonNode = insert(name)
+    try:
+      let j = parseJson(request.body)
+      var data: JsonNode = insert(j["name"].str)
+      resp $data, "application/json"
+    except:
+      resp Http400, "Unable to parse JSON payload"
   patch "/users/@id":
     # Update
     var params = request.formData
@@ -41,7 +46,6 @@ routes:
     var data: JsonNode = update(@"id", name)
     resp $data, "application/json"
   delete "/users/@id":
-    var params = request.formData
     var data: JsonNode = delete(@"id")
     resp $data, "application/json"
 
