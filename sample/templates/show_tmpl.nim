@@ -6,8 +6,8 @@
 <body>
   <div id="menu">
     <ul>
-    <li>Id: ${tab["id"]}</li>
-    <li>Name: ${tab["name"]}</li>
+    <li>Id: ${tab["id"].str}</li>
+    <li>Name: ${tab["name"].str}</li>
     </ul>
   </div>
 </body>
