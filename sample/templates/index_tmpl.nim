@@ -4,26 +4,27 @@
 #  result = ""
 <head><title>$title</title></head>
 <script>
- // Delete a user
+// Delete a user
 function deleteUser(id) {
   var url = "users/" + id;
   var xhr = new XMLHttpRequest();
   xhr.open("DELETE", url, true);
   xhr.onload = function () {
-  	var users = JSON.parse(xhr.responseText);
-  	if (xhr.readyState == 4 && xhr.status == "200") {
-  		// console.table(users);
+    var users = JSON.parse(xhr.responseText);
+    if (xhr.readyState == 4 && xhr.status == "200") {
+      // console.table(users);
       alert("Delete success.");
       location.reload();
-  	} else {
+    } else {
       // console.error(users);
-  		alert("Delete failed");
-  	}
+      alert("Delete failed");
+    }
   }
   xhr.send(null);
 }
 </script>
 <body>
+  <h1>users List</h1>
   <div id="menu">
     <ul>
   #for item in items(tabs):
@@ -37,3 +38,4 @@ function deleteUser(id) {
   </div>
   <a href="users/new">New</a>
 </body>
+  

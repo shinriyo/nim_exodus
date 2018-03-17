@@ -1,8 +1,10 @@
 import os
+import strutils
 
 proc scaffoldiong(modelName: string) =
-
-
+  # TODO: just add s, so fix feature.
+  var pluralModelName = modelName & "s"
+  var capModelName = capitalizeAscii(modelName)
 
   let dir = "templates"
   if not existsDir(dir):
@@ -18,19 +20,19 @@ proc scaffoldiong(modelName: string) =
 #  result = ""
 <head><title>$title</title></head>
 <script>
-// Delete a user
-function deleteUser(id) {
-  var url = "users/" + id;
+// Delete a -modelName-
+function delete-capModelName-(id) {
+  var url = "-pluralModelName-/" + id;
   var xhr = new XMLHttpRequest();
   xhr.open("DELETE", url, true);
   xhr.onload = function () {
-    var users = JSON.parse(xhr.responseText);
+    var -pluralModelName- = JSON.parse(xhr.responseText);
     if (xhr.readyState == 4 && xhr.status == "200") {
-      // console.table(users);
+      // console.table(-pluralModelName-);
       alert("Delete success.");
       location.reload();
     } else {
-      // console.error(users);
+      // console.error(-pluralModelName-);
       alert("Delete failed");
     }
   }
@@ -38,21 +40,25 @@ function deleteUser(id) {
 }
 </script>
 <body>
+  <h1>-pluralModelName- List</h1>
   <div id="menu">
     <ul>
   #for item in items(tabs):
     <li>
-      <a href=users/${item["id"].str}>${item["name"].str}</a>
-      <a href=users/${item["id"].str}/edit>Edit</a>
-      <a href="javascript:deleteUser(${item["id"].str});">Delete</a>
+      <a href=-pluralModelName-/${item["id"].str}>${item["name"].str}</a>
+      <a href=-pluralModelName-/${item["id"].str}/edit>Edit</a>
+      <a href="javascript:delete-capModelName-(${item["id"].str});">Delete</a>
     </li>
   #end for
     </ul>
   </div>
-  <a href="users/new">New</a>
+  <a href="-pluralModelName-/new">New</a>
 </body>
   """
 
+  index_hear = index_hear.replace("-modelName-", modelName)
+  index_hear = index_hear.replace("-pluralModelName-", pluralModelName)
+  index_hear = index_hear.replace("-capModelName-", capModelName)
   index_template_fp.write(index_hear)
   index_template_fp.write("\n")
   defer: index_template_fp.close()
@@ -66,9 +72,9 @@ function deleteUser(id) {
 #  result = ""
 <head><title>$title</title></head>
 <script>
-// Post a user
-function createUser() {
-  var url = "../../users";
+// Post a -modelName-
+function create-capModelName-() {
+  var url = "../../-pluralModelName-";
   var data = {};
   data.name = document.myform["name"].value;
   var json = JSON.stringify(data);
@@ -77,18 +83,19 @@ function createUser() {
   xhr.open("POST", url, true);
   xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
   xhr.onload = function () {
-    var users = JSON.parse(xhr.responseText);
+    var -pluralModelName- = JSON.parse(xhr.responseText);
     if (xhr.readyState == 4 && xhr.status == "201") {
-      console.table(users);
+      console.table(-pluralModelName-);
     } else {
-      console.error(users);
+      console.error(-pluralModelName-);
     }
   }
   xhr.send(json);
 }
 </script>
 <body>
-  <form name="myform" onSubmit="JavaScript:createUser()">
+  <h1>New -modelName-</h1>
+  <form name="myform" onSubmit="JavaScript:create-capModelName-()">
   <p>
   Name: <input type="text" name="name">
   </p>
@@ -97,10 +104,13 @@ function createUser() {
   <input type="reset" value="Reset">
   </p>
   </form>
-  <a href="../../users">Return</a>
+  <a href="../../-pluralModelName-">Return</a>
 </body>
   """
 
+  new_hear = new_hear.replace("-modelName-", modelName)
+  new_hear = new_hear.replace("-pluralModelName-", pluralModelName)
+  new_hear = new_hear.replace("-capModelName-", capModelName)
   new_template_fp.write(new_hear)
   new_template_fp.write("\n")
   defer: new_template_fp.close()
@@ -115,9 +125,9 @@ function createUser() {
 #  result = ""
 <head><title>$title</title></head>
 <script>
-// Update a user
-function updateUser(id) {
-  var url = "../../users/" + id;
+// Update a -modelName-
+function update-capModelName-(id) {
+  var url = "../../-pluralModelName-/" + id;
   var data = {};
   data.name = document.myform["name"].value;
   var json = JSON.stringify(data);
@@ -126,18 +136,19 @@ function updateUser(id) {
   xhr.open("PATCH", url, true);
   xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
   xhr.onload = function () {
-    var users = JSON.parse(xhr.responseText);
+    var -pluralModelName- = JSON.parse(xhr.responseText);
     if (xhr.readyState == 4 && xhr.status == "200") {
-      console.table(users);
+      console.table(-pluralModelName-);
     } else {
-      console.error(users);
+      console.error(-pluralModelName-);
     }
   }
   xhr.send(json);
 }
 </script>
 <body>
-  <form name="myform" onSubmit="JavaScript:updateUser(${tab["id"].str})">
+  <h1>Edit -modelName-</h1>
+  <form name="myform" onSubmit="JavaScript:update-capModelName-(${tab["id"].str})">
   <p>
   Name: <input type="text" name="name" value=${tab["name"].str}>
   </p>
@@ -147,10 +158,13 @@ function updateUser(id) {
   </p>
   </form>
 
-  <a href="../../users">Return</a>
+  <a href="../../-pluralModelName-">Return</a>
 </body>
   """
 
+  edit_hear = edit_hear.replace("-modelName-", modelName)
+  edit_hear = edit_hear.replace("-pluralModelName-", pluralModelName)
+  edit_hear = edit_hear.replace("-capModelName-", capModelName)
   edit_template_fp.write(edit_hear)
   edit_template_fp.write("\n")
   defer: edit_template_fp.close()
@@ -165,6 +179,7 @@ function updateUser(id) {
 #  result = ""
 <head><title>$title</title></head>
 <body>
+  <h1>Show -modelName-</h1>
   <div id="menu">
     <ul>
     <li>Id: ${tab["id"].str}</li>
@@ -182,7 +197,7 @@ function updateUser(id) {
   # nim
   var nim_name = "main.nim"
   var nim_fp = open(nim_name, fmWrite)
-  let nim_hear = """
+  var nim_hear = """
 import jester, asyncdispatch, json
 import httpcore
 include "templates/index_tmpl.nim"
@@ -194,34 +209,34 @@ include "sqlite_controller.nim"
 var title: string = "Scaffolding"
 routes:
   get "/":
-    let hear = "GET	/users	users#index	すべてのユーザの一覧を表示<br/>" &
-               "GET	/users/new	users#new	ユーザを1つ作成するためのHTMLフォームを返す<br/>" &
-               "POST	/users	users#create	ユーザを1つ作成する<br/>" &
-               "GET	/users/:id	users#show	特定のユーザを表示する<br/>" &
-               "GET	/users/:id/edit	users#edit	ユーザ編集用のHTMLフォー&ムを1つ返す<br/>" &
-               "PATCH/PUT	/users/:id	users#update	特定のユーザを更新する<br/>" &
-               "DELETE	/users/:id	users#destroy	特定のユーザを削除する<br/>"
+    let hear = "GET	/-pluralModelName-	-pluralModelName-#index	すべてのユーザの一覧を表示<br/>" &
+               "GET	/-pluralModelName-/new	-pluralModelName-#new	ユーザを1つ作成するためのHTMLフォームを返す<br/>" &
+               "POST	/-pluralModelName-	-pluralModelName-#create	ユーザを1つ作成する<br/>" &
+               "GET	/-pluralModelName-/:id	-pluralModelName-#show	特定のユーザを表示する<br/>" &
+               "GET	/-pluralModelName-/:id/edit	-pluralModelName-#edit	ユーザ編集用のHTMLフォー&ムを1つ返す<br/>" &
+               "PATCH/PUT	/-pluralModelName-/:id	-pluralModelName-#update	特定のユーザを更新する<br/>" &
+               "DELETE	/-pluralModelName-/:id	-pluralModelName-#destroy	特定のユーザを削除する<br/>"
     resp hear
-  get "/users":
+  get "/-pluralModelName-":
     var data: seq[JsonNode] = selectAll()
     resp generateIndexHTMLPage(title, data)
-  get "/users/new":
+  get "/-pluralModelName-/new":
     resp generateNewHTMLPage(title)
-  get "/users/@id/edit":
+  get "/-pluralModelName-/@id/edit":
     var data: JsonNode = select(@"id")
     resp generateEditHTMLPage(title, data)
-  get "/users/@id":
+  get "/-pluralModelName-/@id":
     var data: JsonNode = select(@"id")
     resp generateShowHTMLPage(title, data)
 
-  post "/users":
+  post "/-pluralModelName-":
     try:
       let j = parseJson(request.body)
       var data: JsonNode = insert(j["name"].str)
       resp $data, "application/json"
     except:
       resp Http400, "Unable to parse JSON payload"
-  patch "/users/@id":
+  patch "/-pluralModelName-/@id":
     # Update
     try:
       let j = parseJson(request.body)
@@ -229,12 +244,17 @@ routes:
       resp $data, "application/json"
     except:
       resp Http400, "Unable to parse JSON payload"
-  delete "/users/@id":
+  delete "/-pluralModelName-/@id":
     var data: JsonNode = delete(@"id")
     resp $data, "application/json"
 
+create()
 runForever()
   """
+
+  nim_hear = nim_hear.replace("-modelName-", modelName)
+  nim_hear = nim_hear.replace("-pluralModelName-", pluralModelName)
+  nim_hear = nim_hear.replace("-capModelName-", capModelName)
 
   # nim roure
   nim_fp.write(nim_hear)
@@ -244,48 +264,65 @@ runForever()
   # controller
   var sc_name = "sqlite_controller.nim"
   var sc_fp = open(sc_name, fmWrite)
-  let sc_hear = """
+  var sc_hear = """
 import db_sqlite
 import json
 
-let db = open("mydb.db","user","password","dbname")
+let db = open("mydb.db","-modelName-","password","dbname")
 
 proc select(id: string): JsonNode =
   # select
-  var row: Row = db.getRow(sql"select * from work where id = ?", id)
+  var row: Row = db.getRow(sql"select * from -modelName- where id = ?", id)
   var data = %*{"id": row[0], "name": row[1]}
   return data
 
 proc selectAll(): seq[JsonNode] =
-  var rows: seq[Row] = db.getAllRows(sql"select * from work")
-  var users: seq[JsonNode]
-  users = @[]
+  var rows: seq[Row] = db.getAllRows(sql"select * from -modelName-")
+  var -pluralModelName-: seq[JsonNode]
+  -pluralModelName- = @[]
   for row in rows:
-    users.add(%*{"id": row[0], "name": row[1]})
+    -pluralModelName-.add(%*{"id": row[0], "name": row[1]})
   # select
-  return users
+  return -pluralModelName-
 
 proc insert(name: string): JsonNode =
-  var id = db.tryInsertId(sql"insert into work (name) values (?)", name)
+  var id = db.tryInsertId(sql"insert into -modelName- (name) values (?)", name)
   var data = %*{"id": id, "name": name}
   return data
 
 proc update(id: string, name: string): JsonNode =
-  db.exec(sql"update work set name = ? where id = ?", name, id)
+  db.exec(sql"update -modelName- set name = ? where id = ?", name, id)
   var data = %*{"id": id, "name": name}
   return data
 
 proc delete(id: string): JsonNode =
   var data = %*{"id": id}
-  discard db.tryExec(sql"delete from work where id = ?", id)
+  discard db.tryExec(sql"delete from -modelName- where id = ?", id)
   return data
+
+
+proc create() =
+  block:
+    let db = open("mydb.db","-modelName-","password","dbname")
+    let ddl = @[
+      sql"drop table -modelName-",
+      sql"create table -modelName-(id integer primary key autoincrement, name varchar(50) not null)"
+    ]
+    # create db
+    for cmd in ddl :
+      discard db.tryExec(cmd)
   """
+
+  sc_hear = sc_hear.replace("-modelName-", modelName)
+  sc_hear = sc_hear.replace("-pluralModelName-", pluralModelName)
+  sc_hear = sc_hear.replace("-capModelName-", capModelName)
 
   sc_fp.write(sc_hear)
   sc_fp.write("\n")
   defer: sc_fp.close()
 
 scaffoldiong("user")
+echo ""
 echo "Yay! Run server command below."
 echo "> nim c -r main.nim"
 

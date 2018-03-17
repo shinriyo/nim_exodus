@@ -4,6 +4,7 @@
 #  result = ""
 <head><title>$title</title></head>
 <body>
+  <h1>Show -modelName-</h1>
   <div id="menu">
     <ul>
     <li>Id: ${tab["id"].str}</li>
@@ -11,3 +12,4 @@
     </ul>
   </div>
 </body>
+  

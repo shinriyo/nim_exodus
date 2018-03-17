@@ -26,6 +26,7 @@ function updateUser(id) {
 }
 </script>
 <body>
+  <h1>Edit user</h1>
   <form name="myform" onSubmit="JavaScript:updateUser(${tab["id"].str})">
   <p>
   Name: <input type="text" name="name" value=${tab["name"].str}>
