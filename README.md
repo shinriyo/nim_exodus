@@ -41,13 +41,13 @@ Karax
 
 ## Sample
 
+`sample` folder
+
 It is image of scadfdolding.
 
----
-nim c -r json_app.nim
----
+  nim c -r json_app.nim
 
-* curl
+## curl
 
 - select
 
