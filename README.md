@@ -1,4 +1,10 @@
-# nim_exodus
+# Nim Exodus
+
+template gernerator like Rails scaffoldings.
+
+## Required
+
+nimble install yaml
 
 ## Command
 

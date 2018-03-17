@@ -1,7 +1,6 @@
 import os
 
 proc main() =
-
   let dir = "templates"
   if not existsDir(dir):
     createDir(dir)
@@ -277,3 +276,12 @@ proc delete(id: string): JsonNode =
   defer: sc_fp.close()
 
 main()
+
+var cnt = paramCount()
+if cnt > 1:
+  var i = 1
+  while i <= cnt:
+    var paraName = paramStr(i)
+    var paraArg = paramStr(i + 1)
+    # increment i by 2
+    inc(i, 2)
