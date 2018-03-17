@@ -2,17 +2,19 @@
 
 template gernerator like Rails scaffoldings.
 
-## Required
+## Required (not yet)
 
 nimble install yaml
 
 ## Command
 
-nim c -r index.nim
+* scaffold
+
+  nim c -r index.nim [g|generate] scaffold [fieldName]:[fieldType]
 
 * ex
 
-  nim c -r index.nim g user
+  nim c -r index.nim g scaffold user name:string
 
 ## Options
 
