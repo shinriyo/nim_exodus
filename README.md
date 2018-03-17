@@ -10,6 +10,10 @@ nimble install yaml
 
 nim c -r index.nim
 
+* ex
+
+  nim c -r index.nim g user
+
 ## Options
 
 -type html (default)

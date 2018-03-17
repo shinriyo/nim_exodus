@@ -321,16 +321,18 @@ proc create() =
   sc_fp.write("\n")
   defer: sc_fp.close()
 
-scaffoldiong("user")
-echo ""
-echo "Yay! Run server command below."
-echo "> nim c -r main.nim"
-
 var cnt = paramCount()
 if cnt > 1:
   var i = 1
   while i <= cnt:
     var paraName = paramStr(i)
     var paraArg = paramStr(i + 1)
+
+    if paraName in ["generate", "g"]:
+      scaffoldiong(paraArg)
+      echo ""
+      echo "Yay! Run server command below."
+      echo "> nim c -r main.nim"
+
     # increment i by 2
     inc(i, 2)
