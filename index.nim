@@ -217,6 +217,7 @@ function update-capModelName-(id) {
   var nim_name = "main.nim"
   var nim_fp = open(nim_name, fmWrite)
   var nim_hear = """
+import os
 import jester, asyncdispatch, json
 import httpcore
 include "templates/index_tmpl.nim"
@@ -270,8 +271,8 @@ routes:
 
 var cnt = paramCount()
 
-if cnt > 1:
-  var paraArg = paramStr(0)
+if cnt > 0:
+  var paraArg = paramStr(1)
   var arg: string = paraArg
   if arg in ["init"]:
     create()
@@ -357,16 +358,18 @@ var isGenerate = false
 var modelName = ""
 
 var i = 1
-if cnt > 1:
+if cnt > 2:
   var paraName = paramStr(i)
-  var paraArg = paramStr(i + 1)
+  var sca = paramStr(i + 1)
+  var paraArg = paramStr(i + 2)
 
   if paraName in ["generate", "g"]:
-    isGenerate = true
-    modelName = paraArg 
+    if sca in ["scaffold"]:
+      isGenerate = true
+      modelName = paraArg 
 
-if isGenerate and cnt > 2:
-  inc(i, 1)
+if isGenerate and cnt > 3:
+  inc(i, 2)
 
   # TODO: later more than 2 supports
   var fields: seq[Field] = @[]
@@ -395,3 +398,6 @@ if isGenerate and cnt > 2:
   echo ""
   echo "If you create db,"
   echo "> nim c -r main.nim init"
+else:
+  echo ""
+  echo "no command option found."
