@@ -1,6 +1,9 @@
 import os
 
-proc main() =
+proc scaffoldiong(modelName: string) =
+
+
+
   let dir = "templates"
   if not existsDir(dir):
     createDir(dir)
@@ -15,7 +18,7 @@ proc main() =
 #  result = ""
 <head><title>$title</title></head>
 <script>
- // Delete a user
+// Delete a user
 function deleteUser(id) {
   var url = "users/" + id;
   var xhr = new XMLHttpRequest();
@@ -191,7 +194,14 @@ include "sqlite_controller.nim"
 var title: string = "Scaffolding"
 routes:
   get "/":
-    resp "Hello World!"
+    let hear = "GET	/users	users#index	すべてのユーザの一覧を表示<br/>" &
+               "GET	/users/new	users#new	ユーザを1つ作成するためのHTMLフォームを返す<br/>" &
+               "POST	/users	users#create	ユーザを1つ作成する<br/>" &
+               "GET	/users/:id	users#show	特定のユーザを表示する<br/>" &
+               "GET	/users/:id/edit	users#edit	ユーザ編集用のHTMLフォー&ムを1つ返す<br/>" &
+               "PATCH/PUT	/users/:id	users#update	特定のユーザを更新する<br/>" &
+               "DELETE	/users/:id	users#destroy	特定のユーザを削除する<br/>"
+    resp hear
   get "/users":
     var data: seq[JsonNode] = selectAll()
     resp generateIndexHTMLPage(title, data)
@@ -275,7 +285,9 @@ proc delete(id: string): JsonNode =
   sc_fp.write("\n")
   defer: sc_fp.close()
 
-main()
+scaffoldiong("user")
+echo "Yay! Run server command below."
+echo "> nim c -r main.nim"
 
 var cnt = paramCount()
 if cnt > 1:
