@@ -214,7 +214,7 @@ function update-capModelName-(id) {
   defer: show_template_fp.close()
 
   # nim
-  var nim_name = "main.nim"
+  var nim_name = "app.nim"
   var nim_fp = open(nim_name, fmWrite)
   var nim_hear = """
 import os
@@ -276,6 +276,7 @@ if cnt > 0:
   var arg: string = paraArg
   if arg in ["init"]:
     create()
+    echo ""
     echo "db was created."
 else:
   runForever()
@@ -394,10 +395,10 @@ if isGenerate and cnt > 3:
   scaffoldiong(modelName , fields)
   echo ""
   echo "Yay! Run server command below."
-  echo "> nim c -r main.nim"
+  echo "> nim c -r app.nim"
   echo ""
   echo "If you create db,"
-  echo "> nim c -r main.nim init"
+  echo "> nim c -r app.nim init"
 else:
   echo ""
   echo "no command option found."

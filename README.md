@@ -2,23 +2,33 @@
 
 template gernerator like Rails scaffoldings.
 
-## Required (not yet)
+## Install
 
-nimble install yaml
+  nimble install nim_exodus
+
+## Required
+
+  nim
+  nimble
+
+  (not yet)
+  nimble install yaml
 
 ## Command
 
 * scaffold
 
-  nim c -r index.nim [g|generate] scaffold [fieldName]:[fieldType]
+  ./nim_exodus [g|generate] scaffold [fieldName]:[fieldType]
 
 * ex
 
-  nim c -r index.nim g scaffold user name:string
+  ./nim_exodus g scaffold user name:string
 
 ## Options
 
 -type html (default)
+
+  * feature supports
 
 JSON
 React
@@ -26,7 +36,8 @@ Karax
 
 -db sqlie (default)
 
-postgresql or postgres
+  feature supports
+  postgresql or postgres
 
 ## Sample
 
