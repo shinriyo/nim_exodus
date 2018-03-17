@@ -4,11 +4,11 @@
 #  result = ""
 <head><title>$title</title></head>
 <body>
-  <h1>Show -modelName-</h1>
+  <h1>Show user</h1>
   <div id="menu">
     <ul>
-    <li>Id: ${tab["id"].str}</li>
-    <li>Name: ${tab["name"].str}</li>
+    <li>id: ${tab["id"].str}</li>
+    <li>name: ${tab["name"].str}</li>
     </ul>
   </div>
 </body>

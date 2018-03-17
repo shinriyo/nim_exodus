@@ -1,3 +1,4 @@
+import os
 import jester, asyncdispatch, json
 import httpcore
 include "templates/index_tmpl.nim"
@@ -9,17 +10,14 @@ include "sqlite_controller.nim"
 var title: string = "Scaffolding"
 routes:
   get "/":
-    let hear = """
-GET	/users	users#index	すべてのユーザの一覧を表示<br/>
-GET	/users/new	users#new	ユーザを1つ作成するためのHTMLフォームを返す<br/>
-POST	/users	users#create	ユーザを1つ作成する<br/>
-GET	/users/:id	users#show	特定のユーザを表示する<br/>
-GET	/users/:id/edit	users#edit	ユーザ編集用のHTMLフォームを1つ返す<br/>
-PATCH/PUT	/users/:id	users#update	特定のユーザを更新する<br/>
-DELETE	/users/:id	users#destroy	特定のユーザを削除する<br/>
-    """
+    let hear = "GET	/users	users#index	Show all users<br/>" &
+               "GET	/users/new	users#new	show HTML for create a user<br/>" &
+               "POST	/users	users#create create a user<br/>" &
+               "GET	/users/:id	users#show show a user<br/>" &
+               "GET	/users/:id/edit	users#edit show HTML for edit user form<br/>" &
+               "PATCH/PUT	/users/:id	users#update update a user<br/>" &
+               "DELETE	/users/:id	users#destroy delete a user<br/>"
     resp hear
-
   get "/users":
     var data: seq[JsonNode] = selectAll()
     resp generateIndexHTMLPage(title, data)
@@ -33,10 +31,6 @@ DELETE	/users/:id	users#destroy	特定のユーザを削除する<br/>
     resp generateShowHTMLPage(title, data)
 
   post "/users":
-    # var params: MultiData = request.formData
-    # var name = params["name"].body
-    # data: JsonNode = insert(name)
-    # resp $data, "application/json"
     try:
       let j = parseJson(request.body)
       var data: JsonNode = insert(j["name"].str)
@@ -45,10 +39,6 @@ DELETE	/users/:id	users#destroy	特定のユーザを削除する<br/>
       resp Http400, "Unable to parse JSON payload"
   patch "/users/@id":
     # Update
-    # var params = request.formData
-    # var name: string = params["name"].body
-    # var data: JsonNode = update(@"id", name)
-    # resp $data, "application/json"
     try:
       let j = parseJson(request.body)
       var data: JsonNode = update(@"id", j["name"].str)
@@ -59,5 +49,15 @@ DELETE	/users/:id	users#destroy	特定のユーザを削除する<br/>
     var data: JsonNode = delete(@"id")
     resp $data, "application/json"
 
-runForever()
+
+var cnt = paramCount()
+
+if cnt > 0:
+  var paraArg = paramStr(1)
+  var arg: string = paraArg
+  if arg in ["init"]:
+    create()
+    echo "db was created."
+else:
+  runForever()
   

@@ -28,7 +28,7 @@ function createUser() {
   <h1>New user</h1>
   <form name="myform" onSubmit="JavaScript:createUser()">
   <p>
-  Name: <input type="text" name="name">
+  name: <input type="text" name="name">
   </p>
   <p>
   <input type="submit" value="Submit">
