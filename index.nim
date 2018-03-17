@@ -196,7 +196,7 @@ function update-capModelName-(id) {
   <h1>Show -modelName-</h1>
   <div id="menu">
     <ul>
-    <li>Id: ${tab["id"].str}</li>
+    <li>id: ${tab["id"].str}</li>
     <li>-fieldName-: ${tab["-fieldName-"].str}</li>
     </ul>
   </div>
@@ -228,13 +228,13 @@ include "sqlite_controller.nim"
 var title: string = "Scaffolding"
 routes:
   get "/":
-    let hear = "GET	/-pluralModelName-	-pluralModelName-#index	すべてのユーザの一覧を表示<br/>" &
-               "GET	/-pluralModelName-/new	-pluralModelName-#new	ユーザを1つ作成するためのHTMLフォームを返す<br/>" &
-               "POST	/-pluralModelName-	-pluralModelName-#create	ユーザを1つ作成する<br/>" &
-               "GET	/-pluralModelName-/:id	-pluralModelName-#show	特定のユーザを表示する<br/>" &
-               "GET	/-pluralModelName-/:id/edit	-pluralModelName-#edit	ユーザ編集用のHTMLフォー&ムを1つ返す<br/>" &
-               "PATCH/PUT	/-pluralModelName-/:id	-pluralModelName-#update	特定のユーザを更新する<br/>" &
-               "DELETE	/-pluralModelName-/:id	-pluralModelName-#destroy	特定のユーザを削除する<br/>"
+    let hear = "GET	/-pluralModelName-	-pluralModelName-#index	Show all -pluralModelName-<br/>" &
+               "GET	/-pluralModelName-/new	-pluralModelName-#new	show HTML for create a -modelName-<br/>" &
+               "POST	/-pluralModelName-	-pluralModelName-#create create a -modelName-<br/>" &
+               "GET	/-pluralModelName-/:id	-pluralModelName-#show show a -modelName-<br/>" &
+               "GET	/-pluralModelName-/:id/edit	-pluralModelName-#edit show HTML for edit -modelName- form<br/>" &
+               "PATCH/PUT	/-pluralModelName-/:id	-pluralModelName-#update update a -modelName-<br/>" &
+               "DELETE	/-pluralModelName-/:id	-pluralModelName-#destroy delete a -modelName-<br/>"
     resp hear
   get "/-pluralModelName-":
     var data: seq[JsonNode] = selectAll()
