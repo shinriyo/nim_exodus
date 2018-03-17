@@ -267,8 +267,17 @@ routes:
     var data: JsonNode = delete(@"id")
     resp $data, "application/json"
 
-create()
-runForever()
+
+var cnt = paramCount()
+
+if cnt > 1:
+  var paraArg = paramStr(0)
+  var arg: string = paraArg
+  if arg in ["init"]:
+    create()
+    echo "db was created."
+else:
+  runForever()
   """
 
   nim_hear = nim_hear.replace("-modelName-", modelName)
@@ -383,3 +392,6 @@ if isGenerate and cnt > 2:
   echo ""
   echo "Yay! Run server command below."
   echo "> nim c -r main.nim"
+  echo ""
+  echo "If you create db,"
+  echo "> nim c -r main.nim init"
