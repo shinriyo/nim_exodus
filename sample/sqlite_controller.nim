@@ -38,8 +38,8 @@ proc create() =
     let db = open("mydb.db","user","password","dbname")
     let ddl = @[
       sql"""drop table work""",
-      sql"""create table work (id integer primary key autoincrement,name varchar(50) not null)"""
+      sql"""create table work (id integer primary key autoincrement, name varchar(50) not null)"""
     ]
-    # DDLを実行
+    # create db
     for cmd in ddl :
       discard db.tryExec(cmd)
