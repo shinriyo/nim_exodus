@@ -1,7 +1,11 @@
 import os
 import strutils
 
-proc scaffoldiong(modelName: string) =
+type
+  Field* = object
+    name*, fieldType: string
+
+proc scaffoldiong(modelName: string, fields: seq[Field]) =
   # TODO: just add s, so fix feature.
   var pluralModelName = modelName & "s"
   var capModelName = capitalizeAscii(modelName)
@@ -322,17 +326,43 @@ proc create() =
   defer: sc_fp.close()
 
 var cnt = paramCount()
+
+var isGenerate = false
+var modelName = ""
+
+var i = 1
 if cnt > 1:
-  var i = 1
+  var paraName = paramStr(i)
+  var paraArg = paramStr(i + 1)
+
+  if paraName in ["generate", "g"]:
+    isGenerate = true
+    modelName = paraArg 
+
+if isGenerate and cnt > 2:
+  inc(i, 1)
+
+  # TODO: later more than 2 supports
+  var fields: seq[Field] = @[]
+
   while i <= cnt:
-    var paraName = paramStr(i)
-    var paraArg = paramStr(i + 1)
+    var pa: string = paramStr(i)
+    var arr = pa.split(":")
+    if arr.len == 2:
+      var name: string = arr[0]
+      echo "arr"
+      var fieldType: string = arr[1]
 
-    if paraName in ["generate", "g"]:
-      scaffoldiong(paraArg)
-      echo ""
-      echo "Yay! Run server command below."
-      echo "> nim c -r main.nim"
+      var field = Field(
+        name: name,
+        fieldType: fieldType
+      )
 
-    # increment i by 2
-    inc(i, 2)
+      fields.add(field)
+    # increment i by 1
+    inc(i, 1)
+
+  scaffoldiong(modelName , fields)
+  echo ""
+  echo "Yay! Run server command below."
+  echo "> nim c -r main.nim"
