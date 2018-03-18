@@ -15,7 +15,6 @@
 
 Template gernerator like Rails scaffoldings.
 
-
 Translations: [日本語], [繁體中文], [简体中文], [한국어], [Русский], [Português], [Türkçe], [Español], [Français], [Català], [Deutsch], [فارسی].
 
 <div class="centered">
@@ -48,7 +47,7 @@ or (fisher)
 
 set the command below in `.config/fish/config.fish`
 
-set -x PATH ~/.nimble/bin $PATH
+	set -x PATH ~/.nimble/bin $PATH
 
 ## Required
 
@@ -62,11 +61,11 @@ set -x PATH ~/.nimble/bin $PATH
 
 * scaffold
 
-	./exodus [g|generate] scaffold [fieldName]:[fieldType]
+	exodus [g|generate] scaffold [fieldName]:[fieldType]
 
 * ex
 
-	./exodus g scaffold user name:string
+	exodus g scaffold user name:string
 
 ## Options
 
@@ -85,7 +84,7 @@ set -x PATH ~/.nimble/bin $PATH
 - postgresql
 - postgres
 
-## Compile
+## Compile (for my notes)
 
 	nim c --out:bin/exodus -r src/exodus.nim
 
