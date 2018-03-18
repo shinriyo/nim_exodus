@@ -71,6 +71,12 @@ Translations: [日本語], [繁體中文], [简体中文], [한국어], [Рус�
 - postgresql
 - postgres
 
+## Compile
+
+	nim c --out:bin/exodus -r src/exodus.nim
+
+you can get binary file in bin/exodus.
+
 ## Sample
 
 `sample` folder
