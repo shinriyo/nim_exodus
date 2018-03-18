@@ -6,7 +6,7 @@ description = "Template generator for gester"
 license = "MIT"
 srcDir = "src"
 skipDirs = @["sample"]
-installExt = "bin"
+installExt = @["bin"]
 
 # Dependencies
 
