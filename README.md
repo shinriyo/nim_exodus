@@ -39,15 +39,16 @@ Translations: [日本語], [繁體中文], [简体中文], [한국어], [Рус�
 
 2. set path, if you forgot.
 
-set the command below in `.bashrc` or `.bash_profile
 
-	export PATH=$PATH:~/.nimble/bin
-
-or (fisher)
-
-set the command below in `.config/fish/config.fish`
+set the command below in `.config/fish/config.fish`, if you use `fish` shell.
 
 	set -x PATH ~/.nimble/bin $PATH
+
+or
+
+set the command below in `.bashrc` or `.bash_profile`, if you use `bash` or `zsh` shell.
+
+	export PATH=$PATH:~/.nimble/bin
 
 ## Required
 
