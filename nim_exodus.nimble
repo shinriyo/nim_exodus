@@ -1,11 +1,12 @@
 # Package
 
-version       = "0.0.1"
-author        = "shinriyo"
-description   = "Template generator for gester"
-license       = "MIT"
-bin           = @["shinriyo"]
-skipDirs      = @["sample"]
+version = "0.0.1"
+author = "shinriyo"
+description = "Template generator for gester"
+license = "MIT"
+bin= @["shinriyo"]
+srcDir = "src"
+skipDirs = @["sample"]
 
 # Dependencies
 
