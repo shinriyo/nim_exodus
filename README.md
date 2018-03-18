@@ -22,6 +22,12 @@ Translations: [日本語], [繁體中文], [简体中文], [한국어], [Рус�
 <img src="https://i.imgur.com/rzYIP9u.png" alt="Exodus logs" />
 </div>
 
+## Why Exodus?
+
+* It is troublesome to create templates.
+
+* From old testament
+
 <div class="centered">
 <img src="https://i.imgur.com/eP4WhXZ.jpg" alt="Moses" />
 </div>
@@ -52,7 +58,7 @@ Translations: [日本語], [繁體中文], [简体中文], [한국어], [Рус�
 
 	-type html (default)
 
-* feature supports
+### feature supports
 
 - JSON
 - React
@@ -60,10 +66,10 @@ Translations: [日本語], [繁體中文], [简体中文], [한국어], [Рус�
 
 	-db sqlie (default)
 
-*feature supports
+### feature supports
 
-** postgresql
-** postgres
+- postgresql
+- postgres
 
 ## Sample
 
