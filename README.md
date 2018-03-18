@@ -1,6 +1,30 @@
+[日本語]: README.jp.md
+[繁體中文]: README.zh-tw.md
+[简体中文]: README.zh-cn.md
+[한국어]: README.ko.md
+[Русский]: README.ru.md
+[Português]: README.pt.md
+[Türkçe]: README.tr.md
+[Español]: README.es.md
+[Français]: README.fr.md
+[Català]: README.ca.md
+[Deutsch]: README.du.md
+[فارسی]: README.fa.md
+
 # Exodus
 
 Template gernerator like Rails scaffoldings.
+
+
+Translations: [日本語], [繁體中文], [简体中文], [한국어], [Русский], [Português], [Türkçe], [Español], [Français], [Català], [Deutsch], [فارسی].
+
+<div class="centered">
+<img src="https://i.imgur.com/rzYIP9u.png" alt="Exodus logs" />
+</div>
+
+<div class="centered">
+<img src="https://i.imgur.com/eP4WhXZ.jpg" alt="Moses" />
+</div>
 
 ## Install
 
