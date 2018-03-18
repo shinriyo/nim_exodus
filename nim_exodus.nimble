@@ -5,6 +5,7 @@ author        = "shinriyo"
 description   = "Template generator for gester"
 license       = "MIT"
 bin           = @["shinriyo"]
+skipDirs      = @["sample"]
 
 # Dependencies
 
