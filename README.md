@@ -34,7 +34,21 @@ Translations: [日本語], [繁體中文], [简体中文], [한국어], [Рус�
 
 ## Install
 
+1. use nimble
+
 	nimble install nim_exodus
+
+2. set path, if you forgot.
+
+set the command below in `.bashrc` or `.bash_profile
+
+	export PATH=$PATH:~/.nimble/bin
+
+or (fisher)
+
+set the command below in `.config/fish/config.fish`
+
+set -x PATH ~/.nimble/bin $PATH
 
 ## Required
 
