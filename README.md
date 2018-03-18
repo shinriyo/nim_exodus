@@ -4,40 +4,42 @@ template gernerator like Rails scaffoldings.
 
 ## Install
 
-  nimble install nim_exodus
+	nimble install nim_exodus
 
 ## Required
 
-  nim
-  nimble
+*nim
+*nimble
 
+	nimble install yaml
   (not yet)
-  nimble install yaml
 
 ## Command
 
 * scaffold
 
-  ./nim_exodus [g|generate] scaffold [fieldName]:[fieldType]
+	./nim_exodus [g|generate] scaffold [fieldName]:[fieldType]
 
 * ex
 
-  ./nim_exodus g scaffold user name:string
+	./nim_exodus g scaffold user name:string
 
 ## Options
 
--type html (default)
+	-type html (default)
 
-  * feature supports
+* feature supports
 
-JSON
-React
-Karax
+**JSON
+**React
+**Karax
 
--db sqlie (default)
+	-db sqlie (default)
 
-  feature supports
-  postgresql or postgres
+*feature supports
+
+** postgresql
+** postgres
 
 ## Sample
 
@@ -45,27 +47,27 @@ Karax
 
 It is image of scadfdolding.
 
-  nim c -r json_app.nim
+	nim c -r json_app.nim
 
-## curl
+## curl samples
 
 - select
 
-    curl localhost:5000/users/1
+	curl localhost:5000/users/1
 
 - select all
 
-    curl localhost:5000/users
+	curl localhost:5000/users
 
 - insert
 
-    curl -F name=test localhost:5000/users
+	curl -F name=test localhost:5000/users
 
 - update
 
-    curl -X PATCH -F name=hoge localhost:5000/users/1
+	curl -X PATCH -F name=hoge localhost:5000/users/1
 
 - delete
 
-    curl -X DELETE -F localhost:5000/users/1
+	curl -X DELETE -F localhost:5000/users/1
 
