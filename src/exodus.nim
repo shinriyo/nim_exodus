@@ -380,7 +380,6 @@ if isGenerate and cnt > 3:
     var arr = pa.split(":")
     if arr.len == 2:
       var name: string = arr[0]
-      echo "arr"
       var fieldType: string = arr[1]
 
       var field = Field(
