@@ -97,7 +97,7 @@ you can get binary file in bin/exodus.
 
 It is image of scadfdolding.
 
-	nim c -r json_app.nim
+	nimble build
 
 ## curl samples
 

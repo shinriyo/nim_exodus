@@ -7,6 +7,7 @@ license = "MIT"
 srcDir = "src"
 skipDirs = @["sample"]
 bin = @["exodus"]
+binDir = "bin"
 
 # Dependencies
 
